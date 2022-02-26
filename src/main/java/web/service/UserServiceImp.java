@@ -15,26 +15,14 @@ public class UserServiceImp implements UserService{
 
     @Transactional
     @Override
-    public void createUsersTable() {
-        userDao.createUsersTable();
-    }
-
-    @Transactional
-    @Override
-    public void dropUsersTable() {
-        userDao.dropUsersTable();
-    }
-
-    @Transactional
-    @Override
     public void addUser(User user) {
         userDao.addUser(user);
     }
 
     @Transactional
     @Override
-    public void removeUser(User user) {
-        userDao.removeUser(user);
+    public void removeUser(long id) {
+        userDao.removeUser(id);
     }
 
     @Transactional
@@ -47,5 +35,17 @@ public class UserServiceImp implements UserService{
     @Override
     public void cleanUsersTable() {
         userDao.cleanUsersTable();
+    }
+
+    @Transactional
+    @Override
+    public void updateUser(User user) {
+        userDao.updateUser(user);
+    }
+
+    @Transactional
+    @Override
+    public User getUserById(long id) {
+        return userDao.getUserById(id);
     }
 }

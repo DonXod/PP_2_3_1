@@ -32,7 +32,7 @@ public class HibernateConfig {
         LocalContainerEntityManagerFactoryBean em
                 = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[] { "org" });
+        em.setPackagesToScan(new String[] { "web" });
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -66,8 +66,8 @@ public class HibernateConfig {
 
     Properties additionalProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+        properties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("db.hbm2ddl"));
+        properties.setProperty("hibernate.dialect", env.getProperty("db.dialect"));
 
         return properties;
     }

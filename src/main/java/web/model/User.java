@@ -9,14 +9,16 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "lastname")
     private String lastName;
 
     public User() {}
 
-    public User(long id, String name, String lastName) {
-        this.id = id;
+    public User(String name, String lastName) {
         this.name = name;
         this.lastName = lastName;
     }

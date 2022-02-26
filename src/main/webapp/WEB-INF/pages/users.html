@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <a href="/users/new">Create User</a>
+    <br>
+    <a href="/users/clean">Clean Users</a>
+    <br>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>lastname</th>
+            <th>Edit</th>
+            <th>Remove</th>
+            <th>Personal page</th>
+        </tr>
+        <tr th:each="user: ${users}">
+            <th th:text="${user.getId()}"/>
+            <th th:text="${user.getName()}"/>
+            <th th:text="${user.getLastName()}"/>
+            <th>
+                <form th:action="@{/users/{id}/edit(id=${user.getId()})}">
+                    <input type="submit" class="buttonEdit" value="Edit"/>
+                </form>
+            </th>
+            <th>
+                <form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}">
+                    <input type="submit" value="Remove"/>
+                </form>
+            </th>
+            <th>
+                <form th:action="@{/users/{id}(id=${user.getId()})}">
+                    <input type="submit" class="buttonPage" value="User page"/>
+                </form>
+            </th>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
